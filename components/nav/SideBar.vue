@@ -188,7 +188,7 @@ export default defineComponent({
     ];
 
     onMounted(() => {
-      console.info("on mounted")
+      console.info("on mounted");
       if (window.innerWidth < 520) {
         toggleSidebar();
       }
@@ -250,10 +250,12 @@ span {
   margin-left: 5px;
   font-weight: 500;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.525);
+  color: #fff;
+  opacity: 0.6;
 }
 a.nuxt-link-exact-active span:not(.deactive) {
   color: #fff;
+  opacity: 1;
 }
 div {
   display: flex;
