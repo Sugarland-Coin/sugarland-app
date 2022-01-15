@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "target": "ES2018",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -27,10 +28,15 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node",
+      "nuxt-i18n",
       "@nuxtjs/color-mode",
 
     ],
     "resolveJsonModule": true,
+    "rootDir": "./",
+    "declarationDir": "./lib",
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",

@@ -35,18 +35,17 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
-    // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
-    //https://composition-api.nuxtjs.org/getting-started/setup
     "@nuxtjs/composition-api/module",
-    //https://nuxtjs.org/tutorials/going-dark-with-nuxtjs-color-mode/
     "@nuxtjs/color-mode",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/svg", "@nuxtjs/axios"],
+  generate: {
+    fallback: true,
+  },
 
   axios: {
     // proxy: true

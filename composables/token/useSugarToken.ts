@@ -1,13 +1,21 @@
-import { ref, computed } from "@nuxtjs/composition-api";
+import { ref, computed, useContext } from "@nuxtjs/composition-api";
 import useCoingecko from "../useCoingecko";
 import {ethers, BigNumber} from "ethers"
+
+import LoginPopup from '~/components/modals/LoginPopup.vue'
 
 import SUGARTokenABI from "~/abi/SUGARToken.json"
 
 import walletlink from "walletlink"
 
-const SUGAR_ADDRESS = "0xa16976133d3450f78766ecaa1d743621e237e1a5"
-const SUGAR_GENESIS_BLOCK = 10227028
+const SUGAR_V1_ADDRESS = "0xa16976133d3450f78766ecaa1d743621e237e1a5"
+const SUGAR_V1_GENESIS_BLOCK = 10227028
+
+const SUGAR_V2_ADDRESS = "0xcB2aDBCa6f15E9B3F1D98FcE57aC48a093F34fA9"
+const SUGAR_V2_GENESIS_BLOCK = 14254159
+
+const SUGAR_ADDRESS = SUGAR_V2_ADDRESS
+const SUGAR_GENESIS_BLOCK = SUGAR_V2_GENESIS_BLOCK
 
 const SugarPrice = ref(0);
 const sugarSupply = ref(0);
@@ -56,7 +64,6 @@ export default useSugarToken;
 
 async function getTokenBalance(address) {
   const provider = new ethers.providers.Web3Provider(window.ethereum)
-  console.info(SUGAR_ADDRESS,address)
   const ERC20_SUGAR = new ethers.Contract(SUGAR_ADDRESS, SUGARTokenABI, provider)
   const balance = await ERC20_SUGAR.balanceOf(address)
   console.info(balance)
