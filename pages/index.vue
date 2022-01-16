@@ -21,7 +21,7 @@
       </div>
 
       <div class="afterDataBox">
-        <ChartCard></ChartCard>
+        <!-- <ChartCard></ChartCard> -->
         <NewsCard> </NewsCard>
       </div>
     </div>
