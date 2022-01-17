@@ -17,7 +17,10 @@
             @clicked="showMintingModal"
           />
 
-          <ButtonDefault @clicked="handleAddressInput" placeholder="Check from address" />
+          <ButtonDefault
+            @clicked="handleAddressInput"
+            placeholder="Check from address"
+          />
         </div>
       </div>
 
@@ -46,51 +49,67 @@
 </template> 
 
 <script>
-import { defineComponent, onMounted, reactive, ref, useContext } from "@nuxtjs/composition-api";
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  useContext,
+} from "@nuxtjs/composition-api";
 import { useWeb3 } from "@instadapp/vue-web3";
 import PopFromShadow from "../../atoms/popFromShadow.vue";
 import ButtonDefault from "~/components/atoms/ButtonDefault.vue";
 import LoginPopup from "~/components/modals/LoginPopup.vue";
 import { useModal } from "~/composables/useModal";
 import useSugarToken from "~/composables/token/useSugarToken";
-import {BigNumber, ethers} from "ethers"
+import { BigNumber, ethers } from "ethers";
 
 export default defineComponent({
   name: "reflectionCard",
   setup(props) {
-    const { $moralis } = useContext()
+    const { $moralis } = useContext();
     const { active, account } = useWeb3();
     const { showMintingModal } = useModal(LoginPopup);
-    const { fetchSugarBalance, fetchSugarReflections } = useSugarToken()
+    const { fetchSugarBalance, fetchSugarReflections } = useSugarToken();
 
-    const balance = ref(0)
-    const reflections = ref(0)
-    const bought = ref(0)
-    const sold = ref(0)
+    const balance = ref(0);
+    const reflections = ref(0);
+    const bought = ref(0);
+    const sold = ref(0);
 
-    const inputAddress = ref("")
+    const inputAddress = ref("");
 
-    onMounted(async ()=>{
-      if(!active.value) return
-      fetchAddressStats(account.value.toLowerCase())
-    })
+    onMounted(async () => {
+      if (!active.value) return;
+      fetchAddressStats(account.value.toLowerCase());
+    });
 
     async function handleAddressInput() {
-      console.info(inputAddress)
-      return await fetchAddressStats(inputAddress.value)
+      console.info(inputAddress);
+      return await fetchAddressStats(inputAddress.value.toLowerCase());
     }
 
     async function fetchAddressStats(address) {
-      if(!ethers.utils.isAddress(address)) return
+      if (!ethers.utils.isAddress(address)) return;
 
-      const bal =  await fetchSugarBalance(address)
-      const res = await $moralis.Cloud.run("get_user_t_balance", {address})
-      const reflTot = BigNumber.from("0x"+res.totalOut).add(bal).sub(BigNumber.from("0x"+res.totalIn))
-      balance.value = Number.parseFloat(ethers.utils.formatUnits(bal.toString(), 9)).toFixed(3)
-      reflections.value = Number.parseFloat(ethers.utils.formatUnits(reflTot,9)).toFixed(3)
-      bought.value = Number.parseFloat(ethers.utils.formatUnits(BigNumber.from("0x"+res.bought), 9)).toFixed(3);
-      sold.value = Number.parseFloat(ethers.utils.formatUnits(BigNumber.from("0x"+res.sold), 9)).toFixed(3);
-    } 
+      const bal = await fetchSugarBalance(address);
+      const res = await $moralis.Cloud.run("get_user_t_balance", { address });
+      const reflTot = BigNumber.from("0x" + res.totalOut)
+        .add(bal)
+        .sub(BigNumber.from("0x" + res.totalIn));
+      balance.value = Number.parseFloat(
+        ethers.utils.formatUnits(bal.toString(), 9)
+      ).toFixed(3);
+      reflections.value = Number.parseFloat(
+        ethers.utils.formatUnits(reflTot, 9)
+      ).toFixed(3);
+      bought.value = Number.parseFloat(
+        ethers.utils.formatUnits(BigNumber.from("0x" + res.bought), 9)
+      ).toFixed(3);
+      sold.value = Number.parseFloat(
+        ethers.utils.formatUnits(BigNumber.from("0x" + res.sold), 9)
+      ).toFixed(3);
+    }
 
     return {
       balance,
@@ -101,7 +120,7 @@ export default defineComponent({
       ButtonDefault,
       showMintingModal,
       handleAddressInput,
-      inputAddress
+      inputAddress,
     };
   },
   components: { PopFromShadow },
