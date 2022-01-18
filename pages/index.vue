@@ -4,7 +4,7 @@
       <div class="dataBox flex-row">
         <DataTab>
           <h3>Current Price:</h3>
-          <span>$ {{ SugarPrice }}</span>
+          <span>N/A</span>
         </DataTab>
         <DataTab>
           <h3>Holders:</h3>
@@ -12,11 +12,11 @@
         </DataTab>
         <DataTab>
           <h3>Circulating:</h3>
-          <span>{{ sugarSupply }}</span>
+          <span>N/A</span>
         </DataTab>
         <DataTab>
           <h3>Market Cap:</h3>
-          <span>$ {{ sugarMarketCap }}</span>
+          <span>N/A</span>
         </DataTab>
       </div>
 

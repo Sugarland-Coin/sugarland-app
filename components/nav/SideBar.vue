@@ -4,7 +4,7 @@
       <SugarLogo />
     </NuxtLink>
     <NuxtLink v-if="!collapsed" to="/">
-      <p class="-mt-12 linkBox sugarPrice">Sugar: $ {{ SugarPrice }}</p>
+      <p class="-mt-12 linkBox sugarPrice">Sugar: N/A</p>
     </NuxtLink>
 
     <div class="linkWrapper">
