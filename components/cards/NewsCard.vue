@@ -2,9 +2,7 @@
   <div class="newsCard">
     <h1>Sugarland News</h1>
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id dolorum,
-      facilis perspiciatis quo est quasi! Dolor sit amet consectetur adipisicing
-      elit. Id dolorum, facilis perspiciatis quo est quasi!
+      Price and Marketcap Data will reflect once $SUGAR is listed on CoinGecko.
     </p>
     <slot></slot>
   </div>
