@@ -92,7 +92,7 @@ body {
     opacity: 0.7;
   }
 }
-@media (min-width: 620px) {
+@media (min-width: 834px) {
   .burgerMenu {
     position: absolute;
     top: 30px;
