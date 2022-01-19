@@ -76,7 +76,7 @@ p {
     margin-block: 20px;
   }
 }
-@media (min-width: 620px) {
+@media (min-width: 830px) {
   .dataBoxWrapp {
     margin-inline-end: 45px;
     margin-block: 20px;

@@ -386,7 +386,7 @@ p {
   }
 }
 
-@media (min-width: 620px) {
+@media (min-width: 830px) {
   .copy {
     font-family: "Montserrat", sans-serif;
     font-style: normal;

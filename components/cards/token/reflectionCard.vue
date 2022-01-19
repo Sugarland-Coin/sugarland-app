@@ -246,7 +246,7 @@ span {
     width: 350px;
   }
 }
-@media (min-width: 520px) {
+@media (min-width: 830px) {
   .reflectCard {
     max-height: 800px;
     width: 950px;

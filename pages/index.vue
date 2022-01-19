@@ -169,6 +169,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin-block-start: 50px;
     margin-block-end: 20px;
   }
@@ -179,7 +180,7 @@ span {
   }
 }
 
-@media (min-width: 620px) {
+@media (min-width: 830px) {
   .wrapper {
     max-width: 485px;
   }
