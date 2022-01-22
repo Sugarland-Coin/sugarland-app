@@ -35,7 +35,9 @@ export default defineComponent({
       const timestamps = [];
       chartData?.prices.map((e, i) => {
         if(i % 3 == 0) {
-          timestamps.push(new Date(e[0]).toLocaleTimeString());
+          let hh = "0" + new Date(e[0]).getHours().toString();
+          hh = hh.slice(hh.length - 2, hh.length);
+          timestamps.push(hh + ":" + new Date(e[0]).getMinutes());
           prices.list.push(e[1].toFixed(10));
         }
         return e;
