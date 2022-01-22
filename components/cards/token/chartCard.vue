@@ -16,7 +16,7 @@ import {
   useFetch,
 } from "@nuxtjs/composition-api";
 import useCoingecko from "~/composables/useCoingecko";
-import dateFormat from 'dateformat';
+// import dateFormat from 'dateformat';
 
 export default defineComponent({
   name: "TestChart",
@@ -35,7 +35,7 @@ export default defineComponent({
       const timestamps = [];
       chartData?.prices.map((e, i) => {
         if(i % 3 == 0) {
-          timestamps.push(dateFormat(new Date(e[0]),'H:MM TT'));
+          timestamps.push(new Date(e[0]).toLocaleTimeString());
           prices.list.push(e[1].toFixed(10));
         }
         return e;
