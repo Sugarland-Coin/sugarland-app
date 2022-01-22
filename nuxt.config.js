@@ -51,6 +51,11 @@ export default {
     // proxy: true
   },
 
+  env: {
+    MORALIS_KEY: 'BqiZ6r1dxGSFKnUCCgBc4lx6ZFiFWMgAHX4o1UKe',
+    MORALIS_URL: 'https://wl2ojp7adnkj.usemoralis.com:2053/server',
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend(config) {

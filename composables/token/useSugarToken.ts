@@ -23,15 +23,20 @@ const sugarMarketCap = computed(() => {
   return SugarPrice.value * sugarSupply.value;
 });
 const useSugarToken = () => {
-  const { fetchCoinData } = useCoingecko();
+  const { fetchCoinData, fetchCoinChart } = useCoingecko();
 
   const fetchSugarData = async () => {
     await fetchSugarMarketData()
-    //await fetchSugarChartData()
+    // await fetchSugarChartData()
   };
 
+  const fetchSugarChartData = async () => {
+    const chartdData = await fetchCoinChart("sugarland-token")
+    console.log(chartdData)
+  }
+
   const fetchSugarMarketData = async () => {
-    const sugarland = await fetchCoinData("sugarland")
+    const sugarland = await fetchCoinData("sugarland-token")
 
     SugarPrice.value = sugarland.current_price.usd.toFixed(10);
     sugarSupply.value = sugarland.total_supply

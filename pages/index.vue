@@ -4,7 +4,7 @@
       <div class="dataBox flex-row">
         <DataTab>
           <h3>Current Price:</h3>
-          <span>N/A</span>
+          <span>{{ SugarPrice }}</span>
         </DataTab>
         <DataTab>
           <h3>Holders:</h3>
@@ -12,16 +12,16 @@
         </DataTab>
         <DataTab>
           <h3>Circulating:</h3>
-          <span>N/A</span>
+          <span>{{ sugarSupply }}</span>
         </DataTab>
         <DataTab>
           <h3>Market Cap:</h3>
-          <span>N/A</span>
+          <span>{{ sugarMarketCap }}</span>
         </DataTab>
       </div>
 
       <div class="afterDataBox">
-        <!-- <ChartCard></ChartCard> -->
+        <ChartCard></ChartCard>
         <NewsCard> </NewsCard>
       </div>
     </div>
@@ -63,19 +63,19 @@ export default defineComponent({
     const total_holders = ref(0);
 
     onMounted(async () => {
-      //await $moralis.initPlugins();
-      // const changesInHolders = {
-      //   chainId: 56,
-      //   contractAddress: SUGAR_ADDRESS,
-      //   blockHeight: 13305200,
-      //   endingBlock: (SUGAR_GENESIS_BLOCK * 2).toString(),
-      // };
+      await $moralis.initPlugins();
+      const changesInHolders = {
+        chainId: 56,
+        address: SUGAR_ADDRESS,
+        startingBlock: SUGAR_GENESIS_BLOCK.toString(),
+        endingBlock: (SUGAR_GENESIS_BLOCK * 2).toString(),
+      };
 
-      const res = await $moralis.Cloud.run("get_total_holders", {});
-      // const holders = await $moralis.Plugins.covalent.getBlockTokenHolders(
-      //   changesInHolders
-      // );
-      total_holders.value = res;
+      // const res = await $moralis.Cloud.run("get_total_holders", {});
+      const holders = await $moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
+        changesInHolders
+      );
+      total_holders.value = holders.data.pagination.total_count;
     });
 
     return {

@@ -16,6 +16,7 @@ import {
   useFetch,
 } from "@nuxtjs/composition-api";
 import useCoingecko from "~/composables/useCoingecko";
+import dateFormat from 'dateformat';
 
 export default defineComponent({
   name: "TestChart",
@@ -30,11 +31,14 @@ export default defineComponent({
     const prices = reactive({ list: [] });
 
     useFetch(async () => {
-      const chartData = await fetchCoinChart("sugarland");
+      const chartData = await fetchCoinChart("sugarland-token");
       const timestamps = [];
-      prices.list = chartData?.prices.map((e) => {
-        timestamps.push(new Date(e[0]).toDateString());
-        return e[1].toFixed(10);
+      chartData?.prices.map((e, i) => {
+        if(i % 3 == 0) {
+          timestamps.push(dateFormat(new Date(e[0]),'H:MM TT'));
+          prices.list.push(e[1].toFixed(10));
+        }
+        return e;
       });
       labels.list = timestamps;
     });
