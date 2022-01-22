@@ -63,19 +63,20 @@ export default defineComponent({
     const total_holders = ref(0);
 
     onMounted(async () => {
-      await $moralis.initPlugins();
-      const changesInHolders = {
-        chainId: 56,
-        address: SUGAR_ADDRESS,
-        startingBlock: SUGAR_GENESIS_BLOCK.toString(),
-        endingBlock: (SUGAR_GENESIS_BLOCK * 2).toString(),
-      };
+      // await $moralis.initPlugins();
+      // const changesInHolders = {
+      //   chainId: 56,
+      //   address: SUGAR_ADDRESS,
+      //   startingBlock: SUGAR_GENESIS_BLOCK.toString(),
+      //   endingBlock: (SUGAR_GENESIS_BLOCK * 2).toString(),
+      // };
 
-      // const res = await $moralis.Cloud.run("get_total_holders", {});
-      const holders = await $moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
-        changesInHolders
-      );
-      total_holders.value = holders.data.pagination.total_count;
+      // // const res = await $moralis.Cloud.run("get_total_holders", {});
+      // const holders = await $moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
+      //   changesInHolders
+      // );
+      // total_holders.value = holders.data.pagination.total_count;
+      total_holders.value = 0;
     });
 
     return {
