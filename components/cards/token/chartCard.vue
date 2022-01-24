@@ -1,6 +1,6 @@
 <template>
   <div class="backgroundChart">
-    <LineChart :labels="labels" :data="prices" :style="myStyles" />
+    <LineChart :labels="labels" :data="prices" :style="css" />
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default defineComponent({
       const chartData = await fetchCoinChart("sugarland-token");
       const timestamps = [];
       chartData?.prices.map((e, i) => {
-        if(i % 3 == 0) {
+        if (i % 3 == 0) {
           let hh = "0" + new Date(e[0]).getHours().toString();
           hh = hh.slice(hh.length - 2, hh.length);
           timestamps.push(hh + ":" + new Date(e[0]).getMinutes());
@@ -50,7 +50,7 @@ export default defineComponent({
         const chartData = await fetchCoinChart("sugarland-token");
         const timestamps = [];
         chartData?.prices.map((e, i) => {
-          if(i % 3 == 0) {
+          if (i % 3 == 0) {
             let hh = "0" + new Date(e[0]).getHours().toString();
             hh = hh.slice(hh.length - 2, hh.length);
             timestamps.push(hh + ":" + new Date(e[0]).getMinutes());
@@ -65,6 +65,32 @@ export default defineComponent({
     return { labels, prices };
   },
   computed: {
+    css() {
+      if (process.client) {
+        let width = window.innerWidth;
+        let mobile = {
+          width: `350px`,
+          height: `350px`,
+          position: "relative",
+          color: `white`,
+        };
+        let desktop = {
+          width: `690px`,
+          height: `350px`,
+          position: "relative",
+          color: `white`,
+        };
+        if (width < 700) {
+          return mobile;
+        }
+        if (width >= 700) {
+          return desktop;
+        } else {
+          return {};
+        }
+      }
+    },
+
     myStyles() {
       return {
         width: `690px`,
@@ -109,6 +135,13 @@ canvas#line-chart {
   .backgroundChart {
     margin-inline: 20px;
   }
+
+  .testChartStyle {
+    width: 350px;
+    height: 350px;
+    position: relative;
+    color: white;
+  }
 }
 @media (min-width: 620px) {
   .testChart {
@@ -118,6 +151,13 @@ canvas#line-chart {
   .backgroundChart {
     margin-inline: 0;
     padding-inline: 0;
+  }
+
+  .testChartStyle {
+    width: 690px;
+    height: 350px;
+    position: relative;
+    color: white;
   }
 }
 </style>

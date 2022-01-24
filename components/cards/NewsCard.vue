@@ -2,7 +2,8 @@
   <div class="newsCard">
     <h1>Sugarland News</h1>
     <p>
-      Price and Marketcap Data will reflect once $SUGAR is listed on CoinGecko.
+      Here you can find latest sugarland activities. Stay tuned to discover all
+      the updateds related to the Sugarland curated metaverse.
     </p>
     <slot></slot>
   </div>
