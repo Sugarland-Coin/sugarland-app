@@ -32,7 +32,7 @@ const useSugarToken = () => {
 
   const fetchSugarChartData = async () => {
     const chartdData = await fetchCoinChart("sugarland-token")
-    console.log(chartdData)
+    // console.log(chartdData)
   }
 
   const fetchSugarMarketData = async () => {

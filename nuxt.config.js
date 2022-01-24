@@ -38,7 +38,7 @@ export default {
     "@nuxt/typescript-build",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/composition-api/module",
-    "@nuxtjs/color-mode",
+    // "@nuxtjs/color-mode",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,8 +52,8 @@ export default {
   },
 
   env: {
-    MORALIS_KEY: 'BqiZ6r1dxGSFKnUCCgBc4lx6ZFiFWMgAHX4o1UKe',
-    MORALIS_URL: 'https://wl2ojp7adnkj.usemoralis.com:2053/server',
+    MORALIS_KEY: process.env.MORALIS_KEY,
+    MORALIS_URL: process.env.MORALIS_URL,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

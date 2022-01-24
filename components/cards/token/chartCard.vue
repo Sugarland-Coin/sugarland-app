@@ -45,6 +45,23 @@ export default defineComponent({
       labels.list = timestamps;
     });
 
+    onMounted(() => {
+      setInterval(async () => {
+        const chartData = await fetchCoinChart("sugarland-token");
+        const timestamps = [];
+        chartData?.prices.map((e, i) => {
+          if(i % 3 == 0) {
+            let hh = "0" + new Date(e[0]).getHours().toString();
+            hh = hh.slice(hh.length - 2, hh.length);
+            timestamps.push(hh + ":" + new Date(e[0]).getMinutes());
+            prices.list.push(e[1].toFixed(10));
+          }
+          return e;
+        });
+        labels.list = timestamps;
+      }, 600000);
+    });
+
     return { labels, prices };
   },
   computed: {
