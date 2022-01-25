@@ -72,12 +72,16 @@ export default defineComponent({
         endingBlock: (SUGAR_GENESIS_BLOCK * 2).toString(),
       };
 
-      /* // const res = await $moralis.Cloud.run("get_total_holders", {});
-      const holders = await $moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
-        changesInHolders
-      );
-      total_holders.value = holders.data.pagination.total_count;
-      // total_holders.value = 0; */
+      // const res = await $moralis.Cloud.run("get_total_holders", {});
+      try {
+        const holders = await $moralis.Plugins.covalent.getChangesInTokenHolerBetweenBlockHeights(
+          changesInHolders
+        );
+        total_holders.value = holders.data.pagination.total_count;
+      } catch {
+        total_holders.value = 0;
+      }
+      // total_holders.value = 0;
     });
 
     return {
